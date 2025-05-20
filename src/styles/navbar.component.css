@@ -1,0 +1,51 @@
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fafafa;
+    /* Світло-сірий */
+    padding: 15px 30px;
+    border-bottom: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+    height: 71px;
+
+
+}
+
+.nav-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #000;
+
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-bell {
+    font-size: 25px;
+    cursor: pointer;
+    color: #111;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #444;
+}
+
+.link-notification {
+    text-decoration: none;
+}
+
+.link-logo {
+    text-decoration: none;
+}
+
+.btn-nav {
+    padding: 6px 10px;
+}

@@ -1,0 +1,175 @@
+.course-people,
+.course-info {
+    padding: 5px 20px 10px 20px;
+    height: calc(100vh - 265px);
+    /* або інша висота, залежно від твоєї верстки */
+    overflow-y: auto;
+    font-family: Arial, sans-serif;
+}
+
+.course-info h2 {
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px #cecdcd solid;
+}
+
+.course-people h2 {
+    padding-bottom: 10px;
+    border-bottom: 1px #cecdcd solid;
+
+    margin-bottom: 15px;
+}
+
+.course-people h2:nth-of-type(2) {
+    margin-top: 30px;
+}
+
+.course-info h3 {
+    padding-top: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-top: 1px #cecdcd solid;
+}
+
+.person-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f1f1f1;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+
+.person-card img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.person-card .person-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.person-card p {
+    margin: 0;
+    padding: 2px 0;
+}
+
+.ci-porson-icon-container {
+    display: block;
+    padding-top: 5px;
+}
+
+.ci-porson-info-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+.ci-link-email {
+    text-decoration: none;
+}
+
+.ci-link-email .icon {
+    font-size: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: -2;
+}
+
+.ci-link-trash {
+    text-decoration: none;
+    /* display: flex;
+    flex-direction: row; */
+
+}
+
+.ci-link-trash .icon {
+    color: red;
+    font-size: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: -2;
+}
+
+.ci-link-trash .icon:hover {
+    color: #e60000;
+
+}
+
+
+
+
+.students-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.invite-code-box {
+    margin-top: 20px;
+}
+
+.invite-code-box input {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.ci-invate-code-container {
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* height: 25px; */
+    align-items: center;
+}
+
+.ci-invite-code {
+    background-color: #99ceff;
+    border-radius: 10px;
+    padding: 5px 12px;
+    margin-left: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.ci-button-generate-code {
+    padding: 6px 10px;
+}
+
+.ci-button-generate-code:disabled {
+    opacity: 60%;
+    cursor: not-allowed;
+}
+
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    background-color: #969696;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}

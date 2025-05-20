@@ -1,0 +1,414 @@
+.lp-lesson-page {
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+    background-color: #f8f9fa;
+    height: calc(100vh - 70px);
+}
+
+.lp-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lp-status-container {
+    gap: 10px;
+    display: flex;
+}
+
+.lp-status {
+    background-color: #ececec;
+    padding: 1px 6px;
+    border-radius: 10px;
+}
+
+.lp-status.graded {
+    background-color: rgb(206, 253, 206);
+
+}
+
+.lp-status.rejected {
+    background-color: #ffe9e9;
+}
+
+.lp-status.submitted {
+
+    background-color: rgb(255, 239, 198);
+}
+
+.lp-deadline {
+    margin-bottom: 0;
+    margin-left: 15px;
+}
+
+.lp-task-status {
+    display: flex;
+    align-items: center;
+}
+
+.lp-task-status p {
+    margin-bottom: 0;
+}
+
+.lp-lesson-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    /* border-radius: 12px; */
+    padding: 0 2rem;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    height: calc(100vh - 71px);
+}
+
+.lp-lesson-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.lp-lesson-description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+}
+
+.lp-lesson-video iframe {
+    width: 100%;
+    height: 315px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 1.5rem;
+}
+
+.lp-lesson-content {
+    margin-top: 15px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 2rem;
+    border-left: 3px solid #eee;
+    padding-left: 1rem;
+}
+
+.lp-lesson-attachments {
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+}
+
+.lp-lesson-files-placeholder {
+    font-size: 0.95rem;
+    color: #888;
+    margin-top: 0.5rem;
+}
+
+.lp-lesson-loading,
+.lp-lesson-error {
+    text-align: center;
+    margin-top: 5rem;
+    font-size: 1.2rem;
+    color: #999;
+}
+
+/* ✅ Секція для завдання */
+.lp-task-section {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+}
+
+.lp-task-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lp-task-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* 📎 Інпут для файлів */
+.lp-task-file-input {
+    /* display: block; */
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+/* 🚀 Кнопка надсилання */
+.lp-task-submit-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+}
+
+.lp-task-submit-btn:hover {
+    background-color: #0056b3;
+}
+
+.lp-task-submit-btn:disabled {
+    background-color: #9ec5fe;
+    cursor: not-allowed;
+}
+
+.lp-sent-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.lp-lesson-attachments {
+    margin-top: 2rem;
+}
+
+.lp-lesson-attachments h3 {
+    margin-bottom: 0.5rem;
+}
+
+.lp-file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f3f4f6;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    word-break: break-word;
+    height: 40px;
+}
+
+.lp-file-name {
+    flex: 1;
+    margin-right: 1rem;
+    color: #1f2937;
+    text-decoration: none;
+}
+
+.lp-delete-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #ef4444;
+    padding: 4px 6px;
+    transition: color 0.2s ease;
+}
+
+.lp-delete-btn:disabled {
+    display: none;
+
+}
+
+.lp-delete-btn:hover {
+    color: #b91c1c;
+}
+
+.lp-lesson-files-placeholder {
+    font-style: italic;
+    color: #6b7280;
+}
+
+
+.lp-scroll-box {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    /* Зберігаємо можливість скролу */
+    padding: 1rem 1rem 2rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+
+    /* Стилі для скролбару (за замовчуванням) */
+    scrollbar-width: none;
+    /* Ховаємо стандартний скролбар у Firefox */
+}
+
+/* Стилі для WebKit-браузерів (Chrome, Safari) */
+.lp-scroll-box::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.lp-scroll-box::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+/* На малих екранах ховаємо скролбар візуально */
+@media (max-width: 1024px) {
+    .lp-scroll-box {
+        -ms-overflow-style: none;
+        /* IE і Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    .lp-scroll-box::-webkit-scrollbar {
+        display: none;
+        /* Chrome, Safari, Opera */
+    }
+}
+
+/* Додаткові стилі для мобільних пристроїв */
+@media (max-width: 600px) {
+    .lp-scroll-box {
+        padding: 0.5rem;
+    }
+}
+
+.lp-status-button {
+    display: flex;
+    width: 100%;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.lp-status-button button {
+    width: 60%;
+}
+
+.lp-status-button button:disabled {
+    opacity: 40%;
+}
+
+.teacher-feedback {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background-color: #f8f9fc;
+    border-left: 4px solid #007bff;
+    padding: 12px;
+    margin-top: 16px;
+    border-radius: 8px;
+    max-width: 100%;
+}
+
+.teacher-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.feedback-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.teacher-name {
+    font-weight: 600;
+    margin: 0;
+    color: #333;
+}
+
+.feedback-text {
+    font-style: italic;
+    color: #555;
+    margin: 4px 0 0 0;
+}
+
+.teacher-feedback-wrapper {
+    margin-top: 1rem;
+}
+
+.feedback-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.lesson-edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    /* background-color: #f8f9fa; */
+    border-radius: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+}
+
+.lesson-edit-form label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    color: #333;
+}
+
+.lesson-edit-form input[type="text"],
+.lesson-edit-form input[type="datetime-local"],
+.lesson-edit-form textarea {
+    margin-top: 8px;
+    padding: 10px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: border 0.2s;
+}
+
+.lesson-edit-form input:focus,
+.lesson-edit-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.lesson-edit-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.lesson-edit-form button {
+    padding: 10px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.lesson-edit-form button:hover {
+    background-color: #0056b3;
+}
+
+.lesson-edit-form button:last-child {
+    background-color: #6c757d;
+}
+
+.lesson-edit-form button:last-child:hover {
+    background-color: #5a6268;
+}
+
+.edit-lesson-btn {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px;
+    margin-left: auto;
+    /* прижимає до правого краю */
+    display: block;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.edit-lesson-btn:hover {
+    color: #333;
+    transform: translateY(-1px);
+    /* text-decoration: underline; */
+}

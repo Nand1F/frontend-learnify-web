@@ -1,0 +1,163 @@
+html {
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    -ms-overflow-style: none;
+    /* Ховаємо скролбар у IE/Edge */
+}
+
+
+
+.wp-container::-webkit-scrollbar {
+    display: none;
+    /* Для WebKit-браузерів */
+}
+
+.wp-container {
+    -webkit-overflow-scrolling: touch;
+    /* Плавний скрол на iOS */
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 3rem;
+    background-color: #ddf1ff;
+    align-items: center;
+    height: 100%;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.wp-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.wp-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #2d2d2d;
+}
+
+.wp-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.wp-description {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.wp-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.wp-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.wp-btn-start {
+    background-color: #4caf50;
+}
+
+.wp-btn-start:hover {
+    background-color: #45a045;
+}
+
+.wp-btn-register {
+    background-color: #2196f3;
+}
+
+.wp-btn-register:hover {
+    background-color: #1976d2;
+}
+
+.wp-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wp-image {
+    width: 100%;
+    height: auto;
+    max-width: 900px;
+    object-fit: contain;
+}
+
+/* 📱 Мобільна адаптація */
+@media (max-width: 768px) {
+    .wp-container {
+        flex-direction: column;
+        padding: 2rem 1.5rem;
+        text-align: center;
+        gap: 1rem;
+        /* Зменшуємо відступи для мобільної версії */
+    }
+
+    .wp-image-container {
+        order: -1;
+        /* Переміщуємо картинку вгору */
+        margin-bottom: 1.5rem;
+        width: 100%;
+        max-width: 350px;
+        /* Фіксована максимальна ширина */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .wp-image {
+        width: auto;
+        /* Замість 100% для збереження пропорцій */
+        max-height: 300px;
+        /* Обмежуємо висоту */
+        object-fit: contain;
+        /* Зберігаємо пропорції */
+    }
+
+    .wp-content {
+        order: 1;
+        /* Текст після картинки */
+        max-width: 100%;
+    }
+
+    .wp-title {
+        font-size: 2rem;
+        /* Зменшуємо розмір шрифту */
+        margin-bottom: 0.5rem;
+    }
+
+    .wp-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .wp-buttons {
+        justify-content: center;
+        gap: 0.8rem;
+    }
+
+    .wp-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}

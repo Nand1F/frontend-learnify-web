@@ -1,0 +1,75 @@
+.mp-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 240px;
+    background: #f4f7fa;
+    border-right: 1px solid #ddd;
+    padding: 20px 15px 0px 15px;
+    box-sizing: border-box;
+    height: calc(100vh - 71px);
+    ;
+
+}
+
+.mp-settings-btn {
+    padding: 8px 12px;
+    background: #ffffff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    color: black;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+
+.mp-scrollable-element {
+    max-height: calc(100vh - 205px);
+    overflow-y: auto;
+}
+
+.mp-course-menu {
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+}
+
+.mp-course-link {
+    text-decoration: none;
+}
+
+.mp-menu-item {
+    padding: 10px 8px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: f4f7fa;
+    text-decoration: none;
+    color: black;
+}
+
+.mp-menu-title {
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #d1d1d1;
+}
+
+.mp-menu-bottom-line {
+    border-bottom: 1px solid #d1d1d1;
+}
+
+.sd-outlet {
+    width: 100%;
+    height: calc(100vh - 71px);
+}
+
+.mp-menu-item:hover {
+    background: #e2e8f0;
+}

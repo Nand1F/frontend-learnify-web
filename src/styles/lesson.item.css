@@ -1,0 +1,93 @@
+/* styles/lesson.item.css */
+
+.lesson-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lesson-card-title {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    gap: 16px;
+}
+
+.lesson-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.lesson-type-icon {
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    min-width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+.lesson-type-text {
+    font-size: 12px;
+    margin-top: 4px;
+    color: #6b7280;
+    text-align: center;
+}
+
+.lesson-content h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* Якщо потрібно вирівняти по ширині сітки */
+.lessons-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.lesson-date {
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 8px;
+}
+
+.lp-icon-button-delete {
+    margin-top: 5px;
+    background-color: transparent;
+    border-radius: 15px;
+    padding: 6px 12px;
+}
+
+.lp-icon-button-delete .icon {
+
+    font-size: 25px;
+    color: rgb(255, 91, 91);
+}
+
+.lp-icon-button {
+    background-color: transparent;
+    border-radius: 15px;
+    padding: 6px 12px;
+}
+
+.lp-icon-button .icon {
+    font-size: 25px;
+    color: #1f2937;
+}
