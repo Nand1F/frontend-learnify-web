@@ -5,12 +5,11 @@ import "../styles/LessonPage.css"
 import { formatedDate } from "../common/formattedDate";
 import { formatName } from "../common/formatName";
 import defaultAvatar from '../assets/default-avatar.jpg';
+import { toast } from "react-toastify";
 
 const LessonPage = () => {
     const { id } = useParams();
     const [lesson, setLesson] = useState(null);
-    const [editedLesson, setEditedLesson] = useState({ title: '', content: '', videoUrl: '', deadline: '' });
-    const [isEditing, setIsEditing] = useState(false);
     const [answer, setAnswer] = useState({
         status: "submitted",
         grade_info: {
@@ -18,24 +17,29 @@ const LessonPage = () => {
             maxGrade: 100
         }
     });
-    const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
-
-    const [files, setFiles] = useState([]);
-    const [attachedFiles, setAttachedFiles] = useState([]);
-    const [submitting, setSubmitting] = useState(false);
-    const [userRole, setUserRole] = useState({
-        role: "user"
-    });
-    const [teacherInfo, setTeacherInfo] = useState(null);
-
-    const MAX_FILE_SIZE_MB = 25;
     const statusLabels = {
         awaiting: 'Призначено',
         submitted: 'Здано',
         graded: 'Оцінено',
         rejected: 'Повернуто',
     };
+
+    const [files, setFiles] = useState([]);
+    const [attachedFiles, setAttachedFiles] = useState([]);
+
+    const [userRole, setUserRole] = useState({
+        role: "user"
+    });
+    const [teacherInfo, setTeacherInfo] = useState(null);
+
+    const [editedLesson, setEditedLesson] = useState({ title: '', content: '', videoUrl: '', deadline: '' });
+    const [isEditing, setIsEditing] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
+    const [loading, setLoading] = useState(true);
+
+    const MAX_FILE_SIZE_MB = 25;
+
+    const navigate = useNavigate();
 
     const getYouTubeEmbedUrl = (url) => {
         const match = url.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]+)/);
@@ -48,21 +52,22 @@ const LessonPage = () => {
                 const res = await axios.post(import.meta.env.VITE_SERVER_DOMAIN + `/course/lesson/${id}`,
                     {},
                     { withCredentials: true });
+
                 setTeacherInfo(res.data.teacherInfo)
                 setLesson(res.data.lesson);
+
                 setEditedLesson({
                     title: res.data.lesson.title,
                     content: res.data.lesson.content,
                     videoUrl: res.data.lesson.videoUrl,
-                    deadline: formatToInputDateTime(res.data.lesson.deadline)
+                    deadline: res.data.lesson.deadline ? formatToInputDateTime(res.data.lesson.deadline) : ''
                 });
                 setUserRole({ role: res.data.userRole });
-                console.log(res.data)
+
             } catch (err) {
-                const status = err.response?.status || 500;
+                const status = err.response?.status;
                 if (status === 404) navigate("/404");
                 else if (status === 403) navigate("/403");
-                else navigate("/");
             } finally {
                 setLoading(false);
             }
@@ -103,13 +108,13 @@ const LessonPage = () => {
     const handleFileChange = (e) => {
         const selectedFiles = Array.from(e.target.files);
         const oversizedFiles = selectedFiles.filter(file => file.size > MAX_FILE_SIZE_MB * 1024 * 1024);
-        if (oversizedFiles.length > 0) return alert(`Файл(и) перевищують ${MAX_FILE_SIZE_MB}MB.`);
+        if (oversizedFiles.length > 0) return toast.error(`Файл(и) перевищують ${MAX_FILE_SIZE_MB}MB.`);
         setFiles(selectedFiles);
     };
 
     const handleSubmit = async () => {
-        if (files.length === 0) return alert("Оберіть файл для надсилання.");
-        if (answer?.status === "graded") return alert("Відповідь вже оцінено. Повторна здача недоступна.");
+        if (files.length === 0) return toast.error("Оберіть файл для надсилання.");
+        if (answer?.status === "graded") return toast.error("Відповідь вже оцінено. Повторна здача недоступна.");
 
         const formData = new FormData();
         files.forEach(file => formData.append("files", file));
@@ -123,9 +128,10 @@ const LessonPage = () => {
             });
             setFiles([]);
             window.location.reload();
+            toast.success("Файл(и) було закріплено")
         } catch (err) {
             console.error("Помилка надсилання:", err);
-            alert("Не вдалося надіслати відповідь.");
+            toast.error("Не вдалося закріпити файли.");
         } finally {
             setSubmitting(false);
         }
@@ -135,8 +141,9 @@ const LessonPage = () => {
         try {
             await axios.delete(import.meta.env.VITE_SERVER_DOMAIN + `/delete/answerFile/${fileId}`);
             setAttachedFiles((prev) => prev.filter(f => f._id !== fileId));
+            toast.success("Файл було видалено")
         } catch (err) {
-            alert("Не вдалося видалити файл");
+            toast.error("Не вдалося видалити файл");
         }
     };
 
@@ -146,9 +153,14 @@ const LessonPage = () => {
         try {
             await axios.post(import.meta.env.VITE_SERVER_DOMAIN + `/answer/my/${id}/status/update`, { newStatus }, { withCredentials: true });
             setAnswer(prev => ({ ...prev, status: newStatus }));
+            if (newStatus === "awaiting") {
+                toast.info("Завдання було повернуто")
+            } else {
+                toast.success("Завдання здано")
+            }
         } catch (error) {
             console.error("Помилка зміни статусу:", error);
-            alert("Не вдалося змінити статус відповіді.");
+            toast.error("Не вдалося змінити статус відповіді.");
         }
     };
 
@@ -161,11 +173,11 @@ const LessonPage = () => {
                 deadline: editedLesson.deadline
             },
                 { withCredentials: true });
-            console.log(res.data)
+            toast.success("Сторінку оновлено")
 
         } catch (err) {
             console.error(err)
-            alert("Не оновити сторінку");
+            toast.error("Не вдалося оновити сторінку");
         } finally {
             setLesson(prev => ({ ...prev, ...editedLesson }));
             setIsEditing(false);
@@ -177,7 +189,7 @@ const LessonPage = () => {
         const date = new Date(isoString);
         const offset = date.getTimezoneOffset();
         const localDate = new Date(date.getTime() - offset * 60000);
-        return localDate.toISOString().slice(0, 16); // YYYY-MM-DDTHH:MM
+        return localDate.toISOString().slice(0, 16);
     };
 
     if (loading) return <p>Завантаження...</p>;
@@ -241,7 +253,6 @@ const LessonPage = () => {
                                 </div>
                             )}
 
-                            {/* Інша частина без змін */}
                             {lesson.type === "task" && (
                                 <>
 

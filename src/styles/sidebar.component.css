@@ -5,7 +5,7 @@
     width: 240px;
     background: #f4f7fa;
     border-right: 1px solid #ddd;
-    padding: 20px 15px 0px 15px;
+    padding: 20px 15px 15px 15px;
     box-sizing: border-box;
     height: calc(100vh - 71px);
     ;
@@ -28,7 +28,7 @@
 
 
 .mp-scrollable-element {
-    max-height: calc(100vh - 205px);
+    max-height: calc(100vh - 71px);
     overflow-y: auto;
 }
 
@@ -72,4 +72,79 @@
 
 .mp-menu-item:hover {
     background: #e2e8f0;
+}
+
+.sd-menu-icon {
+    color: black;
+}
+
+.burger-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+    display: none;
+}
+
+.mp-no-courses {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    color: #999;
+}
+
+.mp-no-courses-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.mp-no-courses-text {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.mp-no-courses-subtext {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+
+@media (max-width: 768px) {
+    .burger-btn {
+        display: block;
+    }
+
+    .mp-sidebar {
+        position: fixed;
+        top: 0;
+        left: -250px;
+        width: 250px;
+        height: 100%;
+        background-color: #fff;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        z-index: 1200;
+        transition: left 0.3s ease;
+    }
+
+    .mp-sidebar.open {
+        left: 0;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1100;
+    }
+
 }

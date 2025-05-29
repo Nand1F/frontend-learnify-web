@@ -40,6 +40,14 @@
 
 }
 
+.mp-scrollable-element-main.empty {
+    display: flex;
+    max-height: calc(100vh - 122px);
+    overflow-y: auto;
+    padding-top: 8px;
+    justify-content: center;
+
+}
 
 
 /* Кнопка додавання */
@@ -237,4 +245,56 @@
     font-size: 0.95rem;
     color: #444;
     line-height: 1.5;
+}
+
+.mp-empty-state {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.5s ease-in-out;
+    max-width: 800px;
+}
+
+.mp-empty-state h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.mp-empty-state p {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.mp-empty-icon {
+    width: 120px;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+}
+
+.mp-but-container-empty {
+    display: flex;
+    gap: 15px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .mp-but-container-empty {
+        flex-direction: column;
+    }
 }

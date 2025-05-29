@@ -3,7 +3,6 @@ import { Link, Navigate } from "react-router-dom";
 import InputBox from "../components/input.component";
 import "../styles/userAuthForm.page.css";
 import { useContext, useEffect, useRef, useState } from "react";
-import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
 import LoginButtonGooogle from "../components/button.login.google";
 import { UserContext } from "../App";
@@ -32,12 +31,23 @@ const UserAuthForm = ({ type }) => {
                         profile_img: data.profile_img,
                         email: data.email,
                         role: data.role,
+                        isBlocked: data.isBlocked
                     },
                 });
             })
             .catch(({ response }) => {
-                setError(response.data.error);
-                console.log(response.data.error, "status : " + response.status);
+                if (response.status === 409) {
+                    setError("Дана пошта вже використовується !");
+                } else if (response.status === 404) {
+                    setError("Ведено неправильну пошту або пароль");
+                } else if (response.status === 410) {
+                    setError("Данна пошта вже була зареєстрована за допомогою Google");
+                } else {
+                    setError(response.data.error);
+                    console.log(response.data.error, "status : " + response.status);
+                }
+
+
             });
     };
 

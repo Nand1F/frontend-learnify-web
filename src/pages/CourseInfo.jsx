@@ -49,6 +49,22 @@ export default function CourseInfo({ courseData, userRole }) {
         }
     }
 
+    const handleDeleteCourse = async () => {
+        const firstConfirm = window.confirm("⚠️ Ви впевнені, що хочете видалити курс?");
+        if (!firstConfirm) return;
+
+        const secondConfirm = window.confirm("Всі дані будуть втрачені назавжди. Видалити курс ?");
+        if (!secondConfirm) return;
+
+        try {
+            const res = await axios.delete(import.meta.env.VITE_SERVER_DOMAIN + `/delete/course/${courseData._id}`, { withCredentials: true });
+            window.location.href = "/";
+        } catch (err) {
+            console.error("Помилка при видаленні курсу:", err);
+            alert("Невдалося видалити курс, трапилась неочікувана помилка");
+        }
+    };
+
     const createdDate = new Date(courseData.joinedAt).toLocaleString("uk-UA");
 
     return (
@@ -97,6 +113,17 @@ export default function CourseInfo({ courseData, userRole }) {
                         </button>
 
                     </div>
+                </div>
+            )}
+
+            {userRole.role === "teacher" && (
+                <div className="ci-delete-course-container">
+                    <button
+                        className="ci-delete-course-button"
+                        onClick={() => handleDeleteCourse()}
+                    >
+                        🗑️ Видалити курс
+                    </button>
                 </div>
             )}
         </div>

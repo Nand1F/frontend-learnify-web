@@ -32,7 +32,7 @@ const CourseContent = ({ courseData, userRole }) => {
                     ) : (
                         courseData.lessonsId.map(lesson => (
 
-                            <LessonItem key={lesson._id} className="lesson-item" lesson={lesson} role={userRole.role} />
+                            <LessonItem key={lesson._id} className="lesson-item" lesson={lesson} role={userRole.role} courseId={id} />
 
                         ))
                     )}

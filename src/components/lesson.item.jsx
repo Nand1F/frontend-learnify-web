@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { formatedDate } from "../common/formattedDate";
 import axios from "axios";
 
-const LessonItem = ({ lesson, role }) => {
+const LessonItem = ({ lesson, role, courseId }) => {
     const navigate = useNavigate();
 
     const handleDelete = async () => {
@@ -50,7 +50,7 @@ const LessonItem = ({ lesson, role }) => {
             {role === "teacher" && <div className="lesson-actions">
 
                 {lesson.type === "task" && (
-                    <Link to={`/lesson/${lesson._id}/stats`}>
+                    <Link to={`/course/${courseId}/lesson/${lesson._id}/stats`}>
                         <button className="lp-icon-button" title="Перевірити здачі">
                             <span className="fi fi-rr-stats icon"> </span>
                         </button>

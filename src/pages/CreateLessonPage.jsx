@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/CreateLessonPage.css";
+import { toast } from "react-toastify";
 
 export default function CreateLessonPage() {
     const courseId = useParams();
@@ -71,11 +72,11 @@ export default function CreateLessonPage() {
                 }
             );
 
-            alert("Урок успішно створено!");
+            toast.success(`${lessonData.type === "task" ? "Завдання" : "Урок"} створено`)
             navigate(`/course/${courseId.id}`);
         } catch (err) {
             console.error(err);
-            alert("Помилка при створенні уроку.");
+            toast.error("Помилка при створенні уроку.");
         }
     };
 
@@ -121,7 +122,7 @@ export default function CreateLessonPage() {
                 </div>
 
                 <div className="clp-field">
-                    <label>YouTube посилання (необов'язково):</label>
+                    <label>YouTube посилання (опціонально):</label>
                     <input
                         type="url"
                         value={lessonData.youtubeLink}

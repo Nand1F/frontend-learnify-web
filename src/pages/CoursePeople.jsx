@@ -48,7 +48,7 @@ const CoursePeople = ({ courseId }) => {
             {teacher && (
                 <div className="person-card">
                     <div className="ci-porson-info-container">
-                        <img src={teacher?.personal_info?.profile_img || defoultAvatar} alt="avatar" className="ci-img-avatar" />
+                        <img src={teacher?.personal_info?.profile_img || defaultAvatar} alt="avatar" className="ci-img-avatar" />
                         <div className="person-info">
                             <p>{formatName(teacher?.personal_info?.fullname) || "Помилка завантаження даних !"}</p>
                             <p>{teacher?.personal_info?.email || "Помилка завантаження даних !"}</p>
@@ -63,28 +63,31 @@ const CoursePeople = ({ courseId }) => {
 
             <h2>Учасники курсу</h2>
             <div className="students-list">
-                {students.map((student) => (
-                    <div className="person-card" key={student._id}>
-                        <div className="ci-porson-info-container">
-                            <img src={student?.personal_info?.profile_img || defaultAvatar} alt="avatar" className="ci-img-avatar" />
-                            <div className="person-info">
-                                <p>{formatName(student?.personal_info?.fullname) || "Помилка завантаження даних !"}</p>
-                                <p>{student?.personal_info?.email || "Помилка завантаження даних !"}</p>
+                {students.length === 0 ? (
+                    <p className="no-students-message">Поки що жоден студент не приєднався до курсу.</p>
+                ) : (
+                    students.map((student) => (
+                        <div className="person-card" key={student._id}>
+                            <div className="ci-porson-info-container">
+                                <img src={student?.personal_info?.profile_img || defaultAvatar} alt="avatar" className="ci-img-avatar" />
+                                <div className="person-info">
+                                    <p>{formatName(student?.personal_info?.fullname) || "Помилка завантаження даних !"}</p>
+                                    <p>{student?.personal_info?.email || "Помилка завантаження даних !"}</p>
+                                </div>
+                            </div>
+                            <div className="ci-porson-icon-container">
+                                <a href={`mailto:${student?.personal_info?.email}`} className="ci-link-email">
+                                    <span className="fi fi-rr-envelope icon"></span>
+                                </a>
+                                <a onClick={() => deleteUser(student._id)} className="ci-link-trash">
+                                    <span className="fi fi-rr-trash icon"></span>
+                                </a>
                             </div>
                         </div>
-                        <div className="ci-porson-icon-container">
-                            <a href={`mailto:${student?.personal_info?.email}` || "Помилка завантаження даних !"} className="ci-link-email" >
-                                <span className="fi fi-rr-envelope icon"></span>
-                            </a>
-                            <a onClick={() => deleteUser(student._id)} className="ci-link-trash" >
-                                <span className="fi fi-rr-trash icon"> </span>
-                            </a>
-                        </div>
-
-
-                    </div>
-                ))}
+                    ))
+                )}
             </div>
+
         </div >
     );
 }

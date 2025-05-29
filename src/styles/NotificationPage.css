@@ -1,0 +1,84 @@
+.notification-item {
+    display: block;
+    background-color: #f5f5f5;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: #1a202c;
+    transition: background-color 0.2s ease;
+    position: relative;
+    max-width: 900px;
+}
+
+.notifications-container {
+    padding: 25px 25px 0 25px;
+
+}
+
+.notifications-list {
+    max-height: calc(100vh - 142px);
+    /* або будь-яка інша висота */
+    overflow-y: auto;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    padding: 10px 0 25px 10px;
+}
+
+.notifications-list::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari */
+}
+
+.empty {
+    text-align: center;
+}
+
+.notification-item:hover {
+    background-color: #eeeeee;
+}
+
+.notification-item.unread {
+    border-left: 4px solid #4299e1;
+    background-color: #e2ecf5;
+}
+
+.notification-item.unread:hover {
+    background-color: #dff0ff;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.unread-dot {
+    color: #3182ce;
+    font-size: 14px;
+    margin-left: 8px;
+}
+
+.note-text {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.notification-date {
+    font-size: 12px;
+    color: #718096;
+}
+
+.np_img_bell {
+    height: 40px;
+}
+
+.np-title-container {
+    display: flex;
+    gap: 10px;
+    padding-left: 13px;
+}

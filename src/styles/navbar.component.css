@@ -49,3 +49,52 @@
 .btn-nav {
     padding: 6px 10px;
 }
+
+.nv_img_bell {
+    height: 30px;
+    filter: drop-shadow(2px 2px 1px #00000066);
+}
+
+.avatar-wrapper {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 150px;
+}
+
+.dropdown-menu a,
+.dropdown-menu button {
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .nav-title {
+        padding-left: 45px;
+    }
+}

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../App';
 import WelcomePage from './WelcomePage';
 import CourseCard from '../components/course.card';
+import { toast } from 'react-toastify';
 
 const MainPage = () => {
     const [courses, setCourses] = useState([]);
@@ -42,6 +43,7 @@ const MainPage = () => {
 
 
             } catch (error) {
+                toast.error("Оййй трапилася неочікувана помилка")
                 console.error('Помилка при отриманні курсів:', error);
             } finally {
                 setIsLoading(false);
@@ -65,9 +67,18 @@ const MainPage = () => {
             );
 
             console.log("Приєднано до курсу:", data);
-            setCourses(prev => [...prev, data.course]); // Додаємо новий курс
-        } catch (error) {
-            alert(error.response?.data?.message || error.message)
+            setCourses(prev => [...prev, data.course]);
+            toast.success("Ви успішно приєдналися до курсу")
+        } catch ({ response }) {
+            if (response.status === 404) {
+                toast.error("Курс не знайдено !")
+            } else if (response.status === 409) {
+                toast.error("Ви вже приєднанні до цього курсу !")
+            } else {
+                toast.error("Трапилася неоічкувана помилка !")
+            }
+
+
             console.error("Помилка приєднання:", error.response?.data?.message || error.message);
         }
 
@@ -89,8 +100,10 @@ const MainPage = () => {
             );
 
             console.log("Курс створено:", data);
-            setCourses(prev => [...prev, data.course]); // Додаємо новий курс
+            setCourses(prev => [...prev, data.course]);
+            toast.success("Курс створено!")
         } catch (error) {
+            toast.error("Сталася помилка при створені курсу")
             console.error("Помилка створення курсу:", error.response?.data?.message || error.message);
         }
 
@@ -102,13 +115,41 @@ const MainPage = () => {
 
     return access_token ? (
         <main className="mp-main">
-            <h2 className="mp-main-title">Доступні курси</h2>
-            <div className='mp-scrollable-element-main'>
-                <div className="mp-course-grid">
-                    {courses.map(course => (
-                        <CourseCard key={course._id} course={course} />
-                    ))}
-                </div>
+            {courses.length > 0 ? (<h2 className="mp-main-title">Доступні курси</h2>) : (<></>)}
+
+            <div className={`mp-scrollable-element-main ${courses.length === 0 && "empty"}`}>
+                {courses.length > 0 ? (
+                    <div className="mp-course-grid">
+                        {courses.map(course => (
+                            <CourseCard key={course._id} course={course} />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="mp-empty-state">
+                        <h3>Нуль курсів — саме час діяти! </h3>
+                        <p>Тут поки що порожньо. Створи свій перший курс або приєднайся до вже існуючого!</p>
+                        <div className='mp-but-container-empty'>
+                            <button
+                                className="mp-submit-button"
+                                onClick={() => {
+                                    setActiveTab('create');
+                                    setIsModalOpen(true);
+                                }}
+                            >
+                                Створити курс
+                            </button>
+                            <button
+                                className="mp-submit-button"
+                                onClick={() => {
+                                    setActiveTab('join');
+                                    setIsModalOpen(true);
+                                }}
+                            >
+                                Приєднатися до курсу
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
 
 

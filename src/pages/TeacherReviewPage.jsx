@@ -4,10 +4,12 @@ import "../styles/TeacherReviewPage.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { formatName } from "../common/formatName";
 import defaultAvatar from '../assets/default-avatar.jpg';
+import { toast } from "react-toastify";
 
 
 const TeacherReviewPage = () => {
-    const { id } = useParams()
+    const { courseId, lessonId } = useParams()
+
     const [answers, setAnswers] = useState([]);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [isLoading, setIsLoading] = useState(true)
@@ -25,8 +27,8 @@ const TeacherReviewPage = () => {
 
         const getData = async () => {
             try {
-                console.log(id)
-                const response = await axios.get(import.meta.env.VITE_SERVER_DOMAIN + `/answers/by-task/${id}`, { withCredentials: true });
+                console.log(lessonId)
+                const response = await axios.get(import.meta.env.VITE_SERVER_DOMAIN + `/answers/by-task/${lessonId}`, { withCredentials: true });
                 setAnswers(response.data)
                 console.log(response.data)
             } catch (error) {
@@ -41,13 +43,12 @@ const TeacherReviewPage = () => {
             }
         }
 
-        if (id) {
-            // console.log(id)
+        if (lessonId) {
             getData();
         }
 
 
-    }, [id]);
+    }, [lessonId]);
 
     const handleGrade = async () => {
         const { _id, grade_info, feedback } = selectedAnswer;
@@ -58,11 +59,12 @@ const TeacherReviewPage = () => {
                     grade: grade_info.grade,
                     maxGrade: grade_info.maxGrade,
                     feedback,
+                    courseId,
+                    lessonId
                 },
                 { withCredentials: true }
             );
-            // console.log(response.data)
-            alert("Відповідь успішно оцінено");
+            toast.success("Відповідь оцінено");
             setAnswers((prevAnswers) =>
                 prevAnswers.map((ans) =>
                     ans._id === _id
@@ -82,6 +84,7 @@ const TeacherReviewPage = () => {
                 fileIds: selectedAnswer.fileIds,
             });
         } catch (err) {
+            toast.error("Трапилася помилка під час оцінювання")
             console.error("Grade error:", err);
         }
     };
@@ -90,11 +93,15 @@ const TeacherReviewPage = () => {
         const { _id, feedback } = selectedAnswer;
         try {
             const response = await axios.put(import.meta.env.VITE_SERVER_DOMAIN + `/answers/reject/${_id}`,
-                { feedback },
+                {
+                    feedback,
+                    courseId,
+                    lessonId
+                },
                 { withCredentials: true }
             );
-            // console.log(response)
-            alert("Відповідь було відхило");
+
+            toast.info("Відповідь було повернуто !");
             setAnswers((prevAnswers) =>
                 prevAnswers.map((ans) =>
                     ans._id === _id
@@ -107,13 +114,13 @@ const TeacherReviewPage = () => {
                 )
             );
 
-            // Так само для selectedAnswer
             setSelectedAnswer({
                 ...response.data,
                 studentId: selectedAnswer.studentId,
                 fileIds: selectedAnswer.fileIds,
             });
         } catch (err) {
+            toast.error("Трапилася помилка під час повернення відповіді")
             console.error("Rejection error:", err);
         }
     };

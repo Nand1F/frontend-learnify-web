@@ -1,0 +1,74 @@
+.admin-container {
+
+    margin: 30px auto 0 auto;
+    padding: 20px;
+    height: calc(100vh - 101px);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #343a40;
+}
+
+.admin-container h2 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 25px;
+}
+
+.admin-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.admin-tabs button {
+    padding: 10px 20px;
+    border: 2px solid #007bff;
+    background-color: white;
+    color: #007bff;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.admin-tabs button:hover {
+    background-color: #007bff9a;
+    color: white;
+}
+
+.admin-tabs button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.admin-content {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    .admin-tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .admin-container {
+
+
+        height: 100vh;
+
+    }
+
+    .admin-tabs button {
+        width: 80%;
+    }
+
+    .admin-content {
+        padding: 10px;
+    }
+}

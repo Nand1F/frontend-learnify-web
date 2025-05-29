@@ -30,7 +30,8 @@ const LoginButtonGoogle = ({ setError }) => {
                     user_id: res.data.user_id,
                     profile_img: res.data.profile_img,
                     email: res.data.email,
-                    role: res.data.role
+                    role: res.data.role,
+                    isBlocked: res.data.isBlocked
                 }
             });
             navigate("/")
