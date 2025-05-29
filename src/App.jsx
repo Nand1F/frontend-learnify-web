@@ -10,7 +10,6 @@ import MainPage from "./pages/MainPage";
 import CoursePage from "./pages/CoursePage";
 import ForbiddenPage from "./pages/ForbiddenPage";
 import SideBar from "./components/sidebar.componennt";
-import Lesson from "../../server/Schema/Lesson";
 import LessonPage from "./pages/LessonPage";
 import CreateLessonPage from "./pages/CreateLessonPage";
 import TeacherReviewPage from "./pages/TeacherReviewPage";
