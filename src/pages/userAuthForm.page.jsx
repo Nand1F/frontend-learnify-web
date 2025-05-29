@@ -36,6 +36,7 @@ const UserAuthForm = ({ type }) => {
                 });
             })
             .catch(({ response }) => {
+                console.log(response);
                 if (response.status === 409) {
                     setError("Дана пошта вже використовується !");
                 } else if (response.status === 404) {
