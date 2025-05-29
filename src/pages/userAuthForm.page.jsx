@@ -35,8 +35,15 @@ const UserAuthForm = ({ type }) => {
                     },
                 });
             })
-            .catch(({ response }) => {
-                console.log(response);
+            .catch((error) => {
+                const response = error.response;
+
+                if (!response) {
+                    console.error("Unknown error:", error);
+                    setError("Сталася непередбачена помилка.");
+                    return;
+                }
+
                 if (response.status === 409) {
                     setError("Дана пошта вже використовується !");
                 } else if (response.status === 404) {
@@ -44,11 +51,9 @@ const UserAuthForm = ({ type }) => {
                 } else if (response.status === 410) {
                     setError("Данна пошта вже була зареєстрована за допомогою Google");
                 } else {
-                    setError(response.data.error);
-                    console.log(response.data.error, "status : " + response.status);
+                    setError(response.data?.error || "Помилка сервера");
+                    console.log(response.data?.error, "status : " + response.status);
                 }
-
-
             });
     };
 
