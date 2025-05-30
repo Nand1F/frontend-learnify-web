@@ -3,6 +3,7 @@ import axios from "axios";
 import "../styles/CourseTabs.css";
 import { formatName } from "../common/formatName";
 import defaultAvatar from '../assets/default-avatar.jpg';
+import { toast } from "react-toastify";
 
 
 const CoursePeople = ({ courseId }) => {
@@ -28,14 +29,13 @@ const CoursePeople = ({ courseId }) => {
     }, [courseId]);
 
     const deleteUser = async (studentId) => {
-        // console.log(studentId)
         try {
             const res = await axios.delete(
                 `${import.meta.env.VITE_SERVER_DOMAIN}/courses/${courseId}/people/${studentId}/delete`,
                 { withCredentials: true }
             );
-            console.log(res.data);
             setStudents((prev) => prev.filter((student) => student._id !== studentId));
+            toast.info("Учасника було видалено !")
 
         } catch (error) {
             console.error("Помилка при видалені користувача з курсу:", error);

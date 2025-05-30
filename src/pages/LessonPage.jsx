@@ -288,8 +288,8 @@ const LessonPage = () => {
 
                             <div className="lp-lesson-attachments">
                                 {lesson.type === "task" ? <h3> 📎 Закріпленні файли з відповідю </h3> : <h3> 📎 Закріплені файли </h3>}
-                                {attachedFiles.length === 0 ? (
-                                    <div className="lp-lesson-files-placeholder">Наразі файли відсутні.</div>
+                                {attachedFiles.length === 0 ? (lesson.type === "task" ?
+                                    <div className="lp-lesson-files-placeholder">Наразі файли відсутні.</div> : <div className="lp-lesson-files-placeholder">Без закріплених файлів</div>
                                 ) : (
                                     attachedFiles.map(file => (
                                         <div key={file._id} className="lp-file-item">

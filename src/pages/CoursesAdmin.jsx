@@ -10,7 +10,7 @@ const CoursesAdminPage = () => {
     const [hasMore, setHasMore] = useState(false);
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
-    const limit = 2;
+    const limit = 10;
     const navigate = useNavigate();
 
     useEffect(() => {

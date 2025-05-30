@@ -1,8 +1,9 @@
-// import { FaTrash, FaChartBar } from "react-icons/fa";
+
 import "../styles/lesson.item.css"
 import { Link, useNavigate } from "react-router-dom";
 import { formatedDate } from "../common/formattedDate";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const LessonItem = ({ lesson, role, courseId }) => {
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ const LessonItem = ({ lesson, role, courseId }) => {
                 await axios.delete(import.meta.env.VITE_SERVER_DOMAIN + `/delete/lesson/${lesson._id}`,
                     { withCredentials: true });
                 window.location.reload();
+                toast.info("Урок було видалено !")
             } catch (error) {
                 console.error(error)
             }

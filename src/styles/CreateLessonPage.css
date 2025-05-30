@@ -36,6 +36,7 @@
     margin-bottom: 1.2rem;
     display: flex;
     flex-direction: column;
+    max-height: 300px;
 }
 
 .clp-field label {

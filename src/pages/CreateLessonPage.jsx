@@ -103,6 +103,7 @@ export default function CreateLessonPage() {
                     <input
                         type="text"
                         value={lessonData.title}
+                        maxLength={30}
                         onChange={(e) =>
                             setLessonData({ ...lessonData, title: e.target.value })
                         }
@@ -114,6 +115,7 @@ export default function CreateLessonPage() {
                     <label>Опис:</label>
                     <textarea
                         value={lessonData.description}
+                        maxLength={200}
                         onChange={(e) =>
                             setLessonData({ ...lessonData, description: e.target.value })
                         }
