@@ -108,11 +108,12 @@ body {
 /* 📱 Мобільна адаптація */
 @media (max-width: 768px) {
     .wp-container {
-        flex-direction: column;
+        /* flex-direction: column; */
         padding: 2rem 1.5rem;
         text-align: center;
         gap: 1rem;
-        /* Зменшуємо відступи для мобільної версії */
+        flex-wrap: wrap;
+        /* height: 100%; */
     }
 
     .wp-image-container {
@@ -159,5 +160,9 @@ body {
     .wp-btn {
         padding: 0.7rem 1.2rem;
         font-size: 0.9rem;
+    }
+
+    .wp-description {
+        display: none;
     }
 }

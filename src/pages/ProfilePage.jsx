@@ -142,6 +142,7 @@ const ProfilePage = () => {
                 },
                 user_avatar_type: type
             }));
+            document.getElementById("fileInput").value = null;
             toast.success("Аватар було оновлено")
         } catch (err) {
             console.error("Помилка при оновленні типу аватарки:", err.response?.data || err.message);
