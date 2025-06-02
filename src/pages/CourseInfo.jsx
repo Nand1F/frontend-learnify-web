@@ -92,7 +92,7 @@ export default function CourseInfo({ courseData, userRole }) {
             {userRole.role === "teacher" && (
                 <div className="invite-code-box">
                     <div className="ci-invate-code-container">
-                        <div>
+                        <div className="ci-invate-code-title">
                             <label>Код запрошення:</label>
                             <span
                                 className="ci-invite-code"

@@ -103,21 +103,6 @@
 
 
 /* Для телефонів */
-@media (max-width: 768px) {
-    .cp-lessons-list-container {
-        overflow-y: scroll;
-        /* або auto */
-        scrollbar-width: none;
-        /* Firefox */
-        -ms-overflow-style: none;
-        /* IE та Edge */
-    }
-
-    .cp-lessons-list-container::-webkit-scrollbar {
-        display: none;
-        /* Chrome, Safari, Opera */
-    }
-}
 
 .cp-course-page {
     background: #ffffff;
@@ -192,4 +177,17 @@
     color: rgb(73, 73, 73);
     border-color: #383838;
     border: 1px solid #ccc;
+}
+
+@media (max-width: 768px) {
+    .cp-lessons-list-container {
+        overflow-y: scroll;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding-right: 0;
+    }
+
+    .cp-lessons-list-container::-webkit-scrollbar {
+        display: none;
+    }
 }

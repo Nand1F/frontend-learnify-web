@@ -333,13 +333,13 @@ const LessonPage = () => {
                     ) : (
                         <div className="lesson-edit-form">
                             <label>Назва:
-                                <input type="text" value={editedLesson.title} onChange={e => setEditedLesson({ ...editedLesson, title: e.target.value })} />
+                                <input type="text" maxLength={50} value={editedLesson.title} onChange={e => setEditedLesson({ ...editedLesson, title: e.target.value })} />
                             </label>
                             <label>Опис:
-                                <textarea value={editedLesson.content} onChange={e => setEditedLesson({ ...editedLesson, content: e.target.value })} />
+                                <textarea value={editedLesson.content} maxLength={200} onChange={e => setEditedLesson({ ...editedLesson, content: e.target.value })} />
                             </label>
                             <label>Посилання на відео:
-                                <input type="text" value={editedLesson.videoUrl} onChange={e => setEditedLesson({ ...editedLesson, videoUrl: e.target.value })} />
+                                <input type="text" value={editedLesson.videoUrl} maxLength={2000} onChange={e => setEditedLesson({ ...editedLesson, videoUrl: e.target.value })} />
                             </label>
                             {lesson.type === 'task' && (
 

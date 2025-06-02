@@ -99,3 +99,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+@media (max-width: 768px) {
+    .mp-course-card {
+        width: 100%;
+    }
+}

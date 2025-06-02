@@ -64,9 +64,8 @@
 
 /* Список файлів з прокруткою */
 .answer-details ul {
-    max-height: 200px;
+    max-height: 400px;
     overflow-y: auto;
-    background-color: #fafafa;
     padding: 10px;
     border-radius: 8px;
     border: 1px solid #ddd;
@@ -126,24 +125,6 @@
 }
 
 
-
-/* Для маленьких екранів */
-@media (max-width: 768px) {
-    .review-page {
-        flex-direction: column;
-    }
-
-    .user-list {
-        width: 100%;
-        height: 200px;
-        margin-bottom: 20px;
-    }
-
-    .answer-details {
-        margin-left: 0;
-        height: calc(100vh - 240px);
-    }
-}
 
 .tp-info-container {
     display: flex;
@@ -232,4 +213,31 @@
     border-radius: 6px;
     display: inline-block;
     margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+    .review-page {
+        flex-direction: column;
+        padding: 5px 5px;
+    }
+
+    .user-list {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 7px;
+    }
+
+    .answer-details {
+        margin-left: 0;
+        height: calc(100vh - 240px);
+    }
+
+    .answer-details ul {
+        min-height: 150px;
+
+    }
+
+    .answer-details {
+        padding: 20px 7px;
+    }
 }

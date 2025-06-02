@@ -297,4 +297,10 @@
     .mp-but-container-empty {
         flex-direction: column;
     }
+
+    .mp-course-grid {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 5px 16px;
+    }
 }

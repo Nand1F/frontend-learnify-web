@@ -103,7 +103,7 @@ export default function CreateLessonPage() {
                     <input
                         type="text"
                         value={lessonData.title}
-                        maxLength={30}
+                        maxLength={50}
                         onChange={(e) =>
                             setLessonData({ ...lessonData, title: e.target.value })
                         }

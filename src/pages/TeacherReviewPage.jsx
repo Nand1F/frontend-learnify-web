@@ -161,21 +161,20 @@ const TeacherReviewPage = () => {
                 {selectedAnswer ? (
                     <>
                         <h3>Файли до відповіді</h3>
-                        <ul>
-                            {selectedAnswer.fileIds && selectedAnswer.fileIds.length > 0 ? (
-                                <ul>
-                                    {selectedAnswer.fileIds.map((file) => (
-                                        <li key={file._id}>
-                                            <a href={file.url} target="_blank" rel="noopener noreferrer">
-                                                {file.originalName}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            ) : (
-                                <p className="no-files-message">Без прикріплених файлів</p>
-                            )}
-                        </ul>
+                        {selectedAnswer.fileIds && selectedAnswer.fileIds.length > 0 ? (
+                            <ul>
+                                {selectedAnswer.fileIds.map((file) => (
+                                    <li key={file._id}>
+                                        <a href={file.url} target="_blank" rel="noopener noreferrer">
+                                            {file.originalName}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p className="no-files-message">Без прикріплених файлів</p>
+                        )}
+
                         <div className="file-note">
                             <p className="tp-text-note">Файли доступні лише протягом 15 хвилин після відкриття сторінки.</p>
                             <p className="tp-text-note">Якщо вони не відкриваються, перезавантажте сторінку.</p>
@@ -230,6 +229,7 @@ const TeacherReviewPage = () => {
                                 onChange={(e) =>
                                     setSelectedAnswer({ ...selectedAnswer, feedback: e.target.value })
                                 }
+                                maxLength={300}
                             ></textarea>
 
                             <div className="grading-buttons">

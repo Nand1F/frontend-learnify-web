@@ -188,6 +188,7 @@ const MainPage = () => {
                                         value={joinCode}
                                         onChange={(e) => setJoinCode(e.target.value)}
                                         className="mp-input"
+                                        maxLength={30}
                                     />
                                     <div className="mp-invite-info-wrapper">
                                         <h3 className="mp-info-title">Про код запрошення</h3>
@@ -207,12 +208,14 @@ const MainPage = () => {
                                     <input
                                         type="text"
                                         placeholder="Назва курсу"
+                                        maxLength={30}
                                         value={newCourse.title}
                                         onChange={(e) => setNewCourse({ ...newCourse, title: e.target.value })}
                                         className="mp-input"
                                     />
                                     <textarea
                                         placeholder="Опис курсу"
+                                        maxLength={150}
                                         value={newCourse.description}
                                         onChange={(e) => setNewCourse({ ...newCourse, description: e.target.value })}
                                         className="mp-textarea"

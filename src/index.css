@@ -14,12 +14,9 @@
 
 
 .input-box {
-    min-width: 300px;
     margin-top: 1.5rem;
-    /* width: 25vw; */
     border-radius: 0.375rem;
     padding: 1rem;
-    /* padding-left: 3rem; */
     background-color: rgb(212, 212, 212);
     border: 1px solid grey;
     transition: background-color 0.1s ease-in-out;

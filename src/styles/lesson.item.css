@@ -53,6 +53,16 @@
     font-size: 18px;
     font-weight: 600;
     color: #1f2937;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    word-break: break-word;
+    /* дозволяє ламати дуже довгі слова */
+    overflow-wrap: anywhere;
 }
 
 /* Якщо потрібно вирівняти по ширині сітки */
@@ -90,4 +100,10 @@
 .lp-icon-button .icon {
     font-size: 25px;
     color: #1f2937;
+}
+
+@media (max-width: 768px) {
+    .lesson-card {
+        padding: 16px 5px;
+    }
 }

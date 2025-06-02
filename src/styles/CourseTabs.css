@@ -172,7 +172,7 @@
 .ci-delete-course-container {
     margin-top: 40px;
     display: flex;
-    justify-content: flex-start;
+
 }
 
 .ci-delete-course-button {
@@ -203,12 +203,41 @@
     }
 }
 
-@media (max-width: 875px) {
+@media (max-width: 768px) {
     .ci-invate-code-container {
         flex-direction: column;
     }
 
     .ci-button-generate-code {
         margin-top: 15px;
+    }
+
+    .ci-invate-code-title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ci-delete-course-container {
+        justify-content: center;
+    }
+
+    .course-info {
+        padding: 0;
+    }
+
+    .course-people {
+        padding: 0;
+    }
+
+    .cp-course-page {
+        padding: 20px 10px;
+    }
+
+}
+
+@media (max-width: 350px) {
+    .person-card {
+        flex-direction: column;
     }
 }
