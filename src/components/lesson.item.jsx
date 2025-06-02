@@ -33,9 +33,6 @@ const LessonItem = ({ lesson, role, courseId }) => {
                 <div className="lesson-card-title">
                     <div className="lesson-type-icon">
                         {lesson.type === 'lesson' ? '📚' : '📝'}
-                        <span className="lesson-type-text">
-                            {lesson.type === 'lesson' ? 'Урок' : 'Завдання'}
-                        </span>
                     </div>
 
                     <div className="lesson-content">
