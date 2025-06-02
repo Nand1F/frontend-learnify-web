@@ -16,7 +16,7 @@ const LoginButtonGoogle = ({ setError }) => {
     const handleSuccess = async (credentialResponse) => {
         try {
             const { credential } = credentialResponse;
-            const res = await axios.post('http://localhost:3000/api/auth/google', {
+            const res = await axios.post(import.meta.env.VITE_SERVER_DOMAIN + '/api/auth/google', {
                 token: credential
             }, {
                 withCredentials: true
