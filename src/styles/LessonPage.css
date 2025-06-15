@@ -29,12 +29,17 @@
 }
 
 .lp-status.rejected {
-    background-color: #ffe9e9;
+    background-color: #ffe0e0;
 }
 
 .lp-status.submitted {
 
     background-color: rgb(255, 239, 198);
+}
+
+.lp-status.late {
+
+    background-color: #ffe0e0;
 }
 
 .lp-deadline {

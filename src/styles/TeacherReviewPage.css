@@ -175,7 +175,8 @@
     background-color: rgb(219, 179, 0);
 }
 
-.tp-status.rejected {
+.tp-status.rejected,
+.tp-status.late {
     background-color: #ff4b33;
 }
 

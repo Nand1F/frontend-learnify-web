@@ -115,7 +115,7 @@ export default function CreateLessonPage() {
                     <label>Опис:</label>
                     <textarea
                         value={lessonData.description}
-                        maxLength={200}
+                        maxLength={500}
                         onChange={(e) =>
                             setLessonData({ ...lessonData, description: e.target.value })
                         }

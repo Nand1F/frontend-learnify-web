@@ -22,6 +22,7 @@ const LessonPage = () => {
         submitted: 'Здано',
         graded: 'Оцінено',
         rejected: 'Повернуто',
+        late: 'Здано з запізненням'
     };
 
     const [files, setFiles] = useState([]);
@@ -149,14 +150,37 @@ const LessonPage = () => {
 
     const updateAnswerStatus = async () => {
         if (!answer || answer.status === "graded") return;
-        const newStatus = answer.status === "submitted" ? "awaiting" : "submitted";
-        try {
-            await axios.post(import.meta.env.VITE_SERVER_DOMAIN + `/answer/my/${id}/status/update`, { newStatus }, { withCredentials: true });
-            setAnswer(prev => ({ ...prev, status: newStatus }));
-            if (newStatus === "awaiting") {
-                toast.info("Завдання було повернуто")
+
+        let newStatus = "";
+
+        if (answer.status === "submitted" || answer.status === "late") {
+            newStatus = "awaiting"; // return for rework
+        } else {
+            // Check deadline
+            const now = new Date();
+            const deadline = new Date(lesson.deadline);
+
+            if (lesson.deadline && now > deadline) {
+                newStatus = "late";
             } else {
-                toast.success("Завдання здано")
+                newStatus = "submitted";
+            }
+        }
+
+        try {
+            await axios.post(
+                import.meta.env.VITE_SERVER_DOMAIN + `/answer/my/${id}/status/update`,
+                { newStatus },
+                { withCredentials: true }
+            );
+            setAnswer(prev => ({ ...prev, status: newStatus }));
+
+            if (newStatus === "awaiting") {
+                toast.info("Завдання було повернуто");
+            } else if (newStatus === "late") {
+                toast.warning("Завдання здано з запізненням");
+            } else {
+                toast.success("Завдання здано");
             }
         } catch (error) {
             console.error("Помилка зміни статусу:", error);
@@ -322,7 +346,7 @@ const LessonPage = () => {
                                     >
                                         {answer.status === "graded"
                                             ? "Вже оцінено"
-                                            : answer.status === "submitted"
+                                            : answer.status === "submitted" || answer.status === "late"
                                                 ? "Скасувати надсилання"
                                                 : "Здати"}
                                     </button>
@@ -336,7 +360,7 @@ const LessonPage = () => {
                                 <input type="text" maxLength={50} value={editedLesson.title} onChange={e => setEditedLesson({ ...editedLesson, title: e.target.value })} />
                             </label>
                             <label>Опис:
-                                <textarea value={editedLesson.content} maxLength={200} onChange={e => setEditedLesson({ ...editedLesson, content: e.target.value })} />
+                                <textarea value={editedLesson.content} maxLength={500} onChange={e => setEditedLesson({ ...editedLesson, content: e.target.value })} />
                             </label>
                             <label>Посилання на відео:
                                 <input type="text" value={editedLesson.videoUrl} maxLength={2000} onChange={e => setEditedLesson({ ...editedLesson, videoUrl: e.target.value })} />

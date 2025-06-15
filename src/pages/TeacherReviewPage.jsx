@@ -19,6 +19,7 @@ const TeacherReviewPage = () => {
         submitted: 'Здано',
         graded: 'Оцінено',
         rejected: 'Повернуто',
+        late: 'Здано з запізненням'
 
     };
     const navigate = useNavigate()
