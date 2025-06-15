@@ -40,11 +40,12 @@ const CoursePage = () => {
 
                 if (status === 404) {
                     navigate("/404");
-                } if (status === 403) {
-                    navigate("/403")
+                } else if (status === 403) {
+                    navigate("/403");
                 } else {
-                    navigate("/")
+                    navigate("/");
                 }
+
             } finally {
                 setLoading(false);
             }
