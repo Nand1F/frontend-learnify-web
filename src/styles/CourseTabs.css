@@ -197,6 +197,11 @@
     margin-top: 1rem;
 }
 
+.ci-link-profile-teacher {
+    text-decoration: none;
+    color: black;
+}
+
 @keyframes fadeIn {
     to {
         opacity: 1;

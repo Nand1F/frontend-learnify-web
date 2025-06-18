@@ -216,7 +216,7 @@ const LessonPage = () => {
         return localDate.toISOString().slice(0, 16);
     };
 
-    if (loading) return <p>Завантаження...</p>;
+    if (loading) return null;
     if (!lesson) return <p>Урок не знайдено.</p>;
 
     return (

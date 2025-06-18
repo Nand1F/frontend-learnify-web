@@ -3,6 +3,8 @@ import "../styles/CourseTabs.css";
 import defoultAvatar from '../assets/default-avatar.jpg'
 import axios from "axios";
 import { formatName } from "../common/formatName";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 export default function CourseInfo({ courseData, userRole }) {
     const [inviteCode, setInviteCode] = useState(courseData?.inviteCode || "");
@@ -65,6 +67,20 @@ export default function CourseInfo({ courseData, userRole }) {
         }
     };
 
+    const handleLeaveCourse = async () => {
+        const firstConfirm = window.confirm("⚠️ Ви впевнені, що хочете покинути курс?");
+        if (!firstConfirm) return;
+
+        try {
+            const res = await axios.delete(import.meta.env.VITE_SERVER_DOMAIN + `/leave/course/${courseData._id}`, { withCredentials: true });
+            toast.success("Ви успішно покинули курс !")
+            window.location.href = "/";
+        } catch (err) {
+            console.error("Помилка при покиданні курсу:", err);
+            alert("Невдалося покинути курс, трапилась неочікувана помилка");
+        }
+    }
+
     const createdDate = new Date(courseData.joinedAt).toLocaleString("uk-UA");
 
     return (
@@ -75,57 +91,79 @@ export default function CourseInfo({ courseData, userRole }) {
             <p><strong>Створено:</strong> {createdDate}</p>
 
             <h3>Викладач</h3>
+
             <div className="person-card">
-                <div className="ci-porson-info-container">
-                    <img src={courseData.teacherId?.personal_info?.profile_img || defoultAvatar} alt="avatar" className="ci-img-avatar" />
-                    <div className="person-info">
-                        <p>{formatName(courseData.teacherId?.personal_info?.fullname) || "Помилка завантаження даних !"}</p>
-                        <p>{courseData.teacherId?.personal_info?.email || "Помилка завантаження даних !"}</p>
+                <Link className="ci-link-profile-teacher" to={`/profile/${courseData.teacherId?._id}`}>
+                    <div className="ci-porson-info-container">
+                        <img src={courseData.teacherId?.personal_info?.profile_img || defoultAvatar} alt="avatar" className="ci-img-avatar" />
+                        <div className="person-info">
+                            <p>{formatName(courseData.teacherId?.personal_info?.fullname) || "Помилка завантаження даних !"}</p>
+                            <p>{courseData.teacherId?.personal_info?.email || "Помилка завантаження даних !"}</p>
+                        </div>
                     </div>
-                </div>
+                </Link>
                 <a href={`mailto:${courseData.teacherId?.personal_info?.email}`} className="ci-link-email" >
                     <span className="fi fi-rr-envelope icon"></span>
                 </a>
 
+
+
             </div>
 
-            {userRole.role === "teacher" && (
-                <div className="invite-code-box">
-                    <div className="ci-invate-code-container">
-                        <div className="ci-invate-code-title">
-                            <label>Код запрошення:</label>
-                            <span
-                                className="ci-invite-code"
-                                onClick={handleCopy}
 
+            {
+                userRole.role === "teacher" && (
+                    <div className="invite-code-box">
+                        <div className="ci-invate-code-container">
+                            <div className="ci-invate-code-title">
+                                <label>Код запрошення:</label>
+                                <span
+                                    className="ci-invite-code"
+                                    onClick={handleCopy}
+
+                                >
+                                    {inviteCode}
+                                    {copied && <span className="tooltip">Скопійовано!</span>}
+                                </span>
+                            </div>
+
+                            <button
+                                className="ci-button-generate-code"
+                                onClick={handleGenerate}
+                                disabled={cooldown > 0}
                             >
-                                {inviteCode}
-                                {copied && <span className="tooltip">Скопійовано!</span>}
-                            </span>
+                                {cooldown > 0 ? `Повторити через ${cooldown} с` : "Згенерувати новий код"}
+                            </button>
+
                         </div>
-
-                        <button
-                            className="ci-button-generate-code"
-                            onClick={handleGenerate}
-                            disabled={cooldown > 0}
-                        >
-                            {cooldown > 0 ? `Повторити через ${cooldown} с` : "Згенерувати новий код"}
-                        </button>
-
                     </div>
-                </div>
-            )}
+                )
+            }
 
-            {userRole.role === "teacher" && (
-                <div className="ci-delete-course-container">
-                    <button
-                        className="ci-delete-course-button"
-                        onClick={() => handleDeleteCourse()}
-                    >
-                        🗑️ Видалити курс
-                    </button>
-                </div>
-            )}
-        </div>
+            {
+                userRole.role === "teacher" && (
+                    <div className="ci-delete-course-container">
+                        <button
+                            className="ci-delete-course-button"
+                            onClick={() => handleDeleteCourse()}
+                        >
+                            🗑️ Видалити курс
+                        </button>
+                    </div>
+                )
+            }
+            {
+                userRole.role !== "teacher" && (
+                    <div className="ci-delete-course-container">
+                        <button
+                            className="ci-delete-course-button"
+                            onClick={() => handleLeaveCourse()}
+                        >
+                            Покинути курс
+                        </button>
+                    </div>
+                )
+            }
+        </div >
     );
 }

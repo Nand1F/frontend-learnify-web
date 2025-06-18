@@ -9,7 +9,7 @@ const NotificationsPage = () => {
     const [skip, setSkip] = useState(0);
     const [hasMore, setHasMore] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const limit = 3;
+    const limit = 10;
 
     const loadNotifications = async () => {
         try {
