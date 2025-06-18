@@ -10,7 +10,7 @@ const UsersAdminPage = ({ userId }) => {
     const [hasMore, setHasMore] = useState(false);
     const [loading, setLoading] = useState(true);
     const [currentAdmin, setCurrentAdmin] = useState(null);
-    const limit = 10;
+    const limit = 20;
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
 
